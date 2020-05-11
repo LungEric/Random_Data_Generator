@@ -1,7 +1,6 @@
 # Random data Generator
 
-Ce projet a pour objectif de créer aléatoirement une personne avec son nom que j'ai piocher dans une liste de nom. Avec son sexe , pays et age.
+Ce projet a pour objectif de créer aléatoirement une personne avec son nom que j'ai piocher dans une liste de nom.
+Une personne est composée de son nom, son sexe , pays et age.
+Il crée automatiquement 50 personnes et écrit directement dans un fichier csv
 
-Le programme marche maintenant je vais améliorer afin qu'il écrit dans un fichier csv pour pouvoir utiliser avec pandas et matplotlib.
-
-Maintenant , je vais essayer de faire un programme avec PyQT5.
