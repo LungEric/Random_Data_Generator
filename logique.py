@@ -1,13 +1,13 @@
 import random 
 import itertools 
-
+import csv
 # nom
 def nom ():
     with open('liste_projet/names.txt','r') as file:
         fichier_nom = file.read()
         liste_nom = fichier_nom.split("\n") 
         liste = list(liste_nom)
-    alea = random.choices(liste,k=10)
+    alea = random.choices(liste,k=50)
     
     list_nom = list()
     
@@ -22,7 +22,7 @@ def pays():
         fichier_nom = file.read()
         liste_nom = fichier_nom.split("\n") 
         liste = list(liste_nom)
-    pays = random.choices(liste,k=10)
+    pays = random.choices(liste,k=50)
     
     list_pays = list()
     
@@ -36,7 +36,7 @@ def pays():
 def age():
     age = list(range(18,55))
     random.shuffle(age)
-    l_age = random.choices(age,k=10)
+    l_age = random.choices(age,k=50)
     list_age = list()
     for i_a in l_age:
         list_age.append(i_a) 
@@ -46,7 +46,7 @@ def age():
 
 def sexe():
     sexe = ['M','F']
-    rand_sexe = random.choices(sexe,k=10)
+    rand_sexe = random.choices(sexe,k=50)
     liste_sexe = list()
 
     for s in rand_sexe:
@@ -55,13 +55,23 @@ def sexe():
 
 # def dictionnaire_personne():
 
+# les variables contenant la liste pour créer une personne 
+
 cles=["nom"]
 sexe =sexe()
 age =age()
 nom =nom()
 pays = pays()  
-liste_p = dict()
-for (n,a,s,p) in itertools.zip_longest(nom, age, sexe,pays): 
-    liste_p.update({"nom":n, "age":a, "sexe":s,"pays":p}) 
 
-print(liste_p)
+liste_final = list()
+for (n,a,s,p) in itertools.zip_longest(nom, age, sexe,pays): 
+    liste_final.append({"nom":n, "age":a, "sexe":s,"pays":p})
+    # pour ecrire dans un fichier csv    
+    with open('personne.csv','w',newline='') as f_csv:
+        nom_col = ["nom","age","sexe","pays"]
+        csv_p = csv.DictWriter(f_csv,fieldnames=nom_col)
+        csv_p.writeheader()
+        for p in liste_final:
+            csv_p.writerow(p)
+
+print(liste_final)
